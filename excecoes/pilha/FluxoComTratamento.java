@@ -1,11 +1,11 @@
 package excecoes.pilha;
 
-public class Fluxo {
+public class FluxoComTratamento {
     public static void main(String[] args) {
         System.out.println("Init do main");
         try {
             metodo1();
-        } catch(ArithmeticException | NullPointerException | MinhaExcecao ex) {
+        } catch(ArithmeticException | NullPointerException ex) {
             String msg = ex.getMessage();
             System.out.println("Exception " + msg);
             ex.printStackTrace();
@@ -13,16 +13,20 @@ public class Fluxo {
         System.out.println("Fim do main");
     }
 
-    public static void metodo1() throws MinhaExcecao{
+    public static void metodo1() {
         System.out.println("Init do metodo1");
             metodo2();
         System.out.println("Fim do metodo1");
     }
 
-    public static void metodo2() throws MinhaExcecao{
+    public static void metodo2(){
         System.out.println("Init do metodo 2");
-        throw new MinhaExcecao("Deu muito erro");
-        //System.out.println("Fim do metodo2");
+        for(int i = 1; i <= 5; i++) {
+            System.out.println(i);
+            Conta c = null;
+            c.deposita();
+        }
+        System.out.println("Fim do metodo2");
     }
 }
 
