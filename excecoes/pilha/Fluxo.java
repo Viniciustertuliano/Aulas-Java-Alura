@@ -1,5 +1,11 @@
 package excecoes.pilha;
 
+/**
+ * Classe primcipal no treinamento de tratamento de exceções
+ * 
+ * @author Vinicius Tertuliano
+ */
+
 public class Fluxo {
     public static void main(String[] args) {
         System.out.println("Init do main");
@@ -18,6 +24,12 @@ public class Fluxo {
             metodo2();
         System.out.println("Fim do metodo1");
     }
+
+    /**
+     * Utilizando excessão propria para tratativa de erro
+     * 
+     * @throws MinhaExcecao
+     */
 
     public static void metodo2() throws MinhaExcecao{
         System.out.println("Init do metodo 2");
