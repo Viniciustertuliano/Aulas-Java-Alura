@@ -1,5 +1,7 @@
 package excecoes.pilha;
 
+import model.Conta;
+
 public class FluxoComTratamento {
     public static void main(String[] args) {
         System.out.println("Init do main");
