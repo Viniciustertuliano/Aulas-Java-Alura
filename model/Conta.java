@@ -7,11 +7,14 @@ package model;
  * 
  */
 
-public class Conta {
+public class Conta implements Comparable<Conta>{
 
     private double saldo;
     private int agencia;
     private int numero;
+    private Cliente titular;
+
+    public Conta(){}
 
     public Conta(int agencia, int numero){
         this.agencia = agencia;
@@ -34,6 +37,16 @@ public class Conta {
         this.numero = numero;
     }
 
+    public Cliente getTitular() {
+        return titular;
+    }
+
+    public void setTitular(Cliente titular) {
+        this.titular = titular;
+    }
+
+
+
     public void deposita(double valor){
         this.saldo += valor;
     }
@@ -42,8 +55,28 @@ public class Conta {
         return this.saldo;
     }
 
-    /**
-     * Construtor para inicializar objeto Conta
-     */
-    void deposita() {}
+    @Override
+    public boolean equals(Object ref){
+
+        Conta outra = (Conta) ref;
+
+        if(this.agencia != outra.agencia){
+            return false;
+        }
+
+        if(this.numero != outra.numero){
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
+    public int compareTo(Conta outra){
+        return Double.compare(this.saldo, outra.saldo);
+    }
+
+    public String toString(){
+        return "Numero: "+ this.numero + ", Agencia: " + this.agencia + ", Saldo: " + this.saldo;
+    }
 }
