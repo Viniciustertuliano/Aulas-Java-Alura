@@ -1,4 +1,4 @@
-package br.com.alura.gerenciador.servlet;
+package br.com.alura.gerenciador.acao;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -6,16 +6,16 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/alteraEmpresa")
-public class AlteraEmpresaServlet extends HttpServlet {
+import br.com.alura.gerenciador.modelo.Banco;
+import br.com.alura.gerenciador.modelo.Empresa;
+
+public class AlteraEmpresa implements Acao{
 	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	public String  executa(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+		System.out.println("acao AlteraEmpresa");
 		String nomeEmpresa = req.getParameter("nome");
 		String paramDataEmpresa = req.getParameter("date");
 		String paramId = req.getParameter("id");
@@ -34,7 +34,7 @@ public class AlteraEmpresaServlet extends HttpServlet {
 		empresa.setNome(nomeEmpresa);
 		empresa.setDataAbertura(dataAbertura);
 		
-		resp.sendRedirect("listaEmpresas");
+		return "redirect:entrada?acao=ListaEmpresas";
 	}
 
 }

@@ -1,24 +1,21 @@
-package br.com.alura.gerenciador.servlet;
+package br.com.alura.gerenciador.acao;
 
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = "/novaempresa")
-public class NovaEmpresaServlet extends HttpServlet{
-	
-	private static final long serialVersionUID = 1L;
-	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+import br.com.alura.gerenciador.modelo.Banco;
+import br.com.alura.gerenciador.modelo.Empresa;
+
+public class NovaEmpresa implements Acao{
+
+	public String executa(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+		System.out.println("acao nova empresa");
 		
 		String nomeEmpresa = req.getParameter("nome");
 		String paramDataEmpresa = req.getParameter("date");
@@ -38,11 +35,7 @@ public class NovaEmpresaServlet extends HttpServlet{
 		Banco banco = new Banco();
 		banco.adiciona(empresa);
 		
-		resp.sendRedirect("listaEmpresas");
-		
-		//chamar jsp
-		//RequestDispatcher rd = req.getRequestDispatcher("/novaEmpresaCriada.jsp");
-		//req.setAttribute("empresa", empresa.getNome());
-		//rd.forward(req, resp);
+		return "redirect:entrada?acao=ListaEmpresas";
 	}
+
 }
