@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.alura.gerenciador.acao.AlteraEmpresa;
 import br.com.alura.gerenciador.acao.ListaEmpresas;
@@ -17,7 +18,7 @@ import br.com.alura.gerenciador.acao.NovaEmpresaForm;
 import br.com.alura.gerenciador.acao.RemoveEmpresa;
 import br.com.alura.gerenciador.acao.Acao;
 
-@WebServlet("/entrada")
+//@WebServlet("/entrada")
 public class UnicaEntradaServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	
@@ -25,12 +26,11 @@ public class UnicaEntradaServlet extends HttpServlet{
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
         String paramAcao = req.getParameter("acao"); 
-
+        
         String nomeDaClasse = "br.com.alura.gerenciador.acao." + paramAcao;
 		
 		String nome;
 		try {
-			System.out.println(nomeDaClasse);
 	        Class classe = Class.forName(nomeDaClasse);//carrega a classe com o nome 
 	        Acao acao = (Acao) classe.newInstance(); 
 	        nome = acao.executa(req, resp);
